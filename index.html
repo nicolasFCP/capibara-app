@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Capibara</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <section id="inicio" class="pantalla activa">
+      <h1>Capibara</h1>
+      <p>Pide domicilios en Tame fácil y rápido</p>
+      <button class="btn" onclick="mostrarPantalla('tiendas')">Ver tiendas</button>
+    </section>
+
+    <section id="tiendas" class="pantalla">
+      <h2>Tiendas disponibles</h2>
+
+      <div class="card tienda" onclick="abrirTienda('Droguería Central')">
+        <h3>Droguería Central</h3>
+        <p>Abierto</p>
+      </div>
+
+      <div class="card tienda" onclick="abrirTienda('Supermercado Sur')">
+        <h3>Supermercado Sur</h3>
+        <p>Abierto</p>
+      </div>
+
+      <button class="btn btn-secundario" onclick="mostrarPantalla('inicio')">Volver</button>
+    </section>
+
+    <section id="productos" class="pantalla">
+      <h2 id="titulo-tienda">Productos</h2>
+
+      <div id="lista-productos"></div>
+
+      <button class="btn" onclick="irAlCarrito()">Ir al carrito</button>
+      <button class="btn btn-secundario" onclick="mostrarPantalla('tiendas')">Volver</button>
+    </section>
+
+    <section id="carrito" class="pantalla">
+      <h2>Carrito</h2>
+
+      <div id="tienda-carrito"></div>
+      <div id="lista-carrito" class="lista-carrito"></div>
+
+      <div class="resumen">
+        <p id="subtotal">Subtotal: $0</p>
+        <p id="domicilio">Domicilio: $3.000</p>
+        <p id="total">Total: $3.000</p>
+      </div>
+
+      <button class="btn btn-peligro" onclick="vaciarCarrito()">Vaciar carrito</button>
+      <button class="btn" onclick="mostrarPantalla('pedido')">Continuar pedido</button>
+      <button class="btn btn-secundario" onclick="mostrarPantalla('productos')">Volver</button>
+    </section>
+
+    <section id="pedido" class="pantalla">
+      <h2>Confirmar pedido</h2>
+
+      <div class="formulario">
+        <input type="text" id="nombre" placeholder="Nombre" />
+        <input type="text" id="telefono" placeholder="Teléfono" />
+        <input type="text" id="direccion" placeholder="Dirección" />
+      </div>
+
+      <button class="btn" onclick="enviarPedido()">Pedir por WhatsApp</button>
+      <button class="btn btn-secundario" onclick="mostrarPantalla('carrito')">Volver</button>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

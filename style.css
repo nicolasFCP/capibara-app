@@ -1,0 +1,73 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f3f3f3;
+  color: #222;
+}
+
+.app {
+  max-width: 420px;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding: 24px 16px 40px;
+}
+
+.pantalla {
+  display: none;
+}
+
+.pantalla.activa {
+  display: block;
+}
+
+h1,
+h2 {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.card {
+  background: white;
+  padding: 16px;
+  margin: 12px 0;
+  border-radius: 10px;
+}
+
+.btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+  background: green;
+  color: white;
+  border: none;
+  border-radius: 8px;
+}
+.btn-secundario {
+  background: #666;
+}
+
+.btn-peligro {
+  background: #b22222;
+}
+
+.item-carrito {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.acciones-carrito {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-mini {
+  width: 44px;
+  padding: 10px 0;
+  margin-top: 0;
+}
