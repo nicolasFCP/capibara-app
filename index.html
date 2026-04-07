@@ -60,9 +60,9 @@
     <section id="tiendas" class="pantalla">
       <h2>Tiendas disponibles</h2>
 
-      <div class="card tienda" onclick="abrirTienda('Droguería Central')">
-        <h3>Droguería Central</h3>
-        <p>Abierto</p>
+      <div class="card tienda" onclick="abrirTienda('Droguería San Juan')">
+        <h3>Droguería San Juan</h3>
+        <p>Abierto · 8AM - 8PM</p>
       </div>
 
       <div class="card tienda" onclick="abrirTienda('Supermercado Sur')">
@@ -77,15 +77,17 @@
 
     <!-- PRODUCTOS -->
     <section id="productos" class="pantalla">
-      <h2 id="titulo-tienda">Productos</h2>
+  <h2 id="titulo-tienda">Productos</h2>
 
-      <div id="lista-productos"></div>
+  <div id="info-tienda" class="info-tienda"></div>
 
-      <button class="btn" onclick="irAlCarrito()">Ir al carrito</button>
-      <button class="btn btn-secundario" onclick="mostrarPantalla('tiendas')">
-        Volver
-      </button>
-    </section>
+  <div id="lista-productos"></div>
+
+  <button class="btn" onclick="irAlCarrito()">Ir al carrito</button>
+  <button class="btn btn-secundario" onclick="mostrarPantalla('tiendas')">
+    Volver
+  </button>
+</section>
 
     <!-- CARRITO -->
     <section id="carrito" class="pantalla">

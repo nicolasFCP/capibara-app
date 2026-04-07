@@ -791,3 +791,19 @@ h2 {
 .formulario input::placeholder {
   color: #738174;
 }
+.info-tienda {
+  margin-bottom: 14px;
+}
+
+.tienda-destacada {
+  border-left: 6px solid #e4b84c;
+}
+
+.tienda-destacada h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.tienda-destacada p {
+  margin: 6px 0;
+}

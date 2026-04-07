@@ -1,9 +1,9 @@
-const DOMICILIO = 3000;
+const DOMICILIO = 5000;
 let carrito = [];
 let tiendaActual = "";
 
 const tiendas = {
-  "Droguería Central": [
+  "Droguería San Juan": [
     { nombre: "Acetaminofén", precio: 2000 },
     { nombre: "Vitamina C", precio: 5000 },
     { nombre: "Suero oral", precio: 3000 }
@@ -35,8 +35,34 @@ function abrirTienda(nombreTienda) {
 
   document.getElementById("titulo-tienda").textContent = nombreTienda;
 
+  const infoTienda = document.getElementById("info-tienda");
   const listaProductos = document.getElementById("lista-productos");
+
+  infoTienda.innerHTML = "";
   listaProductos.innerHTML = "";
+
+  if (nombreTienda === "Droguería San Juan") {
+    infoTienda.innerHTML = `
+      <div class="card tienda-destacada">
+        <h3>Droguería San Juan</h3>
+        <p>📍 Calle 14 N 15 76 - Centro</p>
+        <p>⏰ Horario: 8 AM a 8 PM</p>
+        <p>💳 Pagos: Efectivo, Nequi, Daviplata</p>
+        <p>🛵 Entrega estimada: 20 a 30 min</p>
+        <p>⭐ Medicamentos disponibles con entrega rápida</p>
+      </div>
+    `;
+  }
+
+  if (nombreTienda === "Supermercado Sur") {
+    infoTienda.innerHTML = `
+      <div class="card tienda-destacada">
+        <h3>Supermercado Sur</h3>
+        <p>🛒 Productos básicos para tu hogar</p>
+        <p>📍 Atención local en Tame</p>
+      </div>
+    `;
+  }
 
   tiendas[nombreTienda].forEach(function (producto) {
     const card = document.createElement("div");
@@ -121,6 +147,7 @@ function actualizarCarrito() {
   const listaCarrito = document.getElementById("lista-carrito");
   const subtotalElemento = document.getElementById("subtotal");
   const totalElemento = document.getElementById("total");
+  const domicilioElemento = document.getElementById("domicilio");
 
   tiendaCarrito.innerHTML = "";
   listaCarrito.innerHTML = "";
@@ -132,6 +159,7 @@ function actualizarCarrito() {
   if (carrito.length === 0) {
     listaCarrito.innerHTML = "<p>No has agregado productos todavía.</p>";
     subtotalElemento.textContent = "Subtotal: $0";
+    domicilioElemento.textContent = "Domicilio: $" + formatearNumero(DOMICILIO);
     totalElemento.textContent = "Total: $" + formatearNumero(DOMICILIO);
     return;
   }
@@ -164,6 +192,7 @@ function actualizarCarrito() {
   const total = subtotal + DOMICILIO;
 
   subtotalElemento.textContent = "Subtotal: $" + formatearNumero(subtotal);
+  domicilioElemento.textContent = "Domicilio: $" + formatearNumero(DOMICILIO);
   totalElemento.textContent = "Total: $" + formatearNumero(total);
 }
 
@@ -190,7 +219,15 @@ function enviarPedido() {
   let subtotal = 0;
   let mensaje = "Hola, quiero hacer este pedido en Capibara:\n\n";
 
-  mensaje += "Tienda: " + tiendaActual + "\n\n";
+  mensaje += "Tienda: " + tiendaActual + "\n";
+
+  if (tiendaActual === "Droguería San Juan") {
+    mensaje += "Responsable: Fernando Caballero\n";
+    mensaje += "Dirección tienda: Calle 14 N 15 760 - Centro\n";
+    mensaje += "Tiempo estimado: 10 a 20 min\n\n";
+  } else {
+    mensaje += "\n";
+  }
 
   carrito.forEach(function (producto) {
     const totalProducto = producto.precio * producto.cantidad;
@@ -206,9 +243,9 @@ function enviarPedido() {
   mensaje += "\nSubtotal: $" + formatearNumero(subtotal);
   mensaje += "\nDomicilio: $" + formatearNumero(DOMICILIO);
   mensaje += "\nTotal: $" + formatearNumero(total);
-  mensaje += "\n\nNombre: " + nombre;
-  mensaje += "\nTeléfono: " + telefono;
-  mensaje += "\nDirección: " + direccion;
+  mensaje += "\n\nNombre cliente: " + nombre;
+  mensaje += "\nTeléfono cliente: " + telefono;
+  mensaje += "\nDirección cliente: " + direccion;
 
   const numeroWhatsApp = "573115666476";
   const url = "https://wa.me/" + numeroWhatsApp + "?text=" + encodeURIComponent(mensaje);
