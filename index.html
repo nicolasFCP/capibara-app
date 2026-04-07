@@ -8,12 +8,55 @@
 </head>
 <body>
   <main class="app">
-    <section id="inicio" class="pantalla activa">
-      <h1>Capibara</h1>
-      <p>Pide domicilios en Tame fácil y rápido</p>
-      <button class="btn" onclick="mostrarPantalla('tiendas')">Ver tiendas</button>
-    </section>
+    <!-- INICIO -->
+    <section id="inicio" class="pantalla activa inicio">
+  <div class="hero hero-mixto">
+    <div class="hero-panel-oscuro">
+      <div class="hero-top">
+        <div class="marca">
+          <img src="logo.png" class="logo-img" alt="Logo Capibara" />
+          <span class="marca-texto">Capibara</span>
+        </div>
+      </div>
 
+      <div class="hero-content">
+        <p class="etiqueta">Tecnología local para domicilios</p>
+
+        <h1>
+          El llano se mueve
+          <span>con Capibara</span>
+        </h1>
+
+        <p class="subtitulo">
+          Pide en Tame desde tu celular de forma rápida, simple y confiable.
+        </p>
+
+        <button class="btn principal" onclick="mostrarPantalla('tiendas')">
+          Explorar tiendas
+        </button>
+      </div>
+    </div>
+
+    <div class="hero-info hero-info-claro">
+      <div class="info-card">
+        <strong>Local</strong>
+        <span>Hecho para Tame</span>
+      </div>
+
+      <div class="info-card">
+        <strong>Rápido</strong>
+        <span>Pedidos fáciles</span>
+      </div>
+
+      <div class="info-card">
+        <strong>Confiable</strong>
+        <span>Atención directa</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- TIENDAS -->
     <section id="tiendas" class="pantalla">
       <h2>Tiendas disponibles</h2>
 
@@ -27,18 +70,24 @@
         <p>Abierto</p>
       </div>
 
-      <button class="btn btn-secundario" onclick="mostrarPantalla('inicio')">Volver</button>
+      <button class="btn btn-secundario" onclick="mostrarPantalla('inicio')">
+        Volver
+      </button>
     </section>
 
+    <!-- PRODUCTOS -->
     <section id="productos" class="pantalla">
       <h2 id="titulo-tienda">Productos</h2>
 
       <div id="lista-productos"></div>
 
       <button class="btn" onclick="irAlCarrito()">Ir al carrito</button>
-      <button class="btn btn-secundario" onclick="mostrarPantalla('tiendas')">Volver</button>
+      <button class="btn btn-secundario" onclick="mostrarPantalla('tiendas')">
+        Volver
+      </button>
     </section>
 
+    <!-- CARRITO -->
     <section id="carrito" class="pantalla">
       <h2>Carrito</h2>
 
@@ -51,11 +100,20 @@
         <p id="total">Total: $3.000</p>
       </div>
 
-      <button class="btn btn-peligro" onclick="vaciarCarrito()">Vaciar carrito</button>
-      <button class="btn" onclick="mostrarPantalla('pedido')">Continuar pedido</button>
-      <button class="btn btn-secundario" onclick="mostrarPantalla('productos')">Volver</button>
+      <button class="btn btn-peligro" onclick="vaciarCarrito()">
+        Vaciar carrito
+      </button>
+
+      <button class="btn" onclick="mostrarPantalla('pedido')">
+        Continuar pedido
+      </button>
+
+      <button class="btn btn-secundario" onclick="mostrarPantalla('productos')">
+        Volver
+      </button>
     </section>
 
+    <!-- PEDIDO -->
     <section id="pedido" class="pantalla">
       <h2>Confirmar pedido</h2>
 
@@ -66,7 +124,10 @@
       </div>
 
       <button class="btn" onclick="enviarPedido()">Pedir por WhatsApp</button>
-      <button class="btn btn-secundario" onclick="mostrarPantalla('carrito')">Volver</button>
+
+      <button class="btn btn-secundario" onclick="mostrarPantalla('carrito')">
+        Volver
+      </button>
     </section>
   </main>
 
