@@ -26,6 +26,7 @@ function mostrarPantalla(idPantalla) {
 
   if (pantallaDestino) {
     pantallaDestino.classList.add("activa");
+    window.scrollTo(0, 0);
   }
 }
 
@@ -46,10 +47,11 @@ function abrirTienda(nombreTienda) {
       <div class="card tienda-destacada">
         <h3>Droguería San Juan</h3>
         <p>📍 Calle 14 N 15 76 - Centro</p>
+        <p>👤 Atención: Fernando Caballero</p>
         <p>⏰ Horario: 8 AM a 8 PM</p>
         <p>💳 Pagos: Efectivo, Nequi, Daviplata</p>
-        <p>🛵 Entrega estimada: 20 a 30 min</p>
-        <p>⭐ Medicamentos disponibles con entrega rápida</p>
+        <p>🛵 Entrega estimada: 10 a 20 min</p>
+        <p>⭐ Medicamentos disponibles con entrega rápida en Tame</p>
       </div>
     `;
   }
@@ -68,13 +70,19 @@ function abrirTienda(nombreTienda) {
     const card = document.createElement("div");
     card.className = "card producto";
 
+    let etiquetaExtra = "";
+    if (nombreTienda === "Droguería San Juan" && producto.nombre === "Acetaminofén") {
+      etiquetaExtra = `<p style="color: green; font-weight: bold;">🔥 Más solicitado</p>`;
+    }
+
     card.innerHTML = `
       <div>
         <h3>${producto.nombre}</h3>
         <p>$${formatearNumero(producto.precio)}</p>
+        ${etiquetaExtra}
         <small>Disponible</small>
       </div>
-      <button class="btn" onclick="agregar('${producto.nombre}', ${producto.precio})">Agregar</button>
+      <button type="button" class="btn" onclick="agregar('${producto.nombre}', ${producto.precio})">Agregar</button>
     `;
 
     listaProductos.appendChild(card);
@@ -117,9 +125,7 @@ function restarProducto(nombre) {
     return item.nombre === nombre;
   });
 
-  if (!producto) {
-    return;
-  }
+  if (!producto) return;
 
   producto.cantidad -= 1;
 
@@ -181,8 +187,8 @@ function actualizarCarrito() {
         <p>Total producto: $${formatearNumero(totalProducto)}</p>
       </div>
       <div class="acciones-carrito">
-        <button class="btn btn-mini" onclick="restarProducto('${producto.nombre}')">-</button>
-        <button class="btn btn-mini" onclick="sumarProducto('${producto.nombre}')">+</button>
+        <button type="button" class="btn btn-mini" onclick="restarProducto('${producto.nombre}')">-</button>
+        <button type="button" class="btn btn-mini" onclick="sumarProducto('${producto.nombre}')">+</button>
       </div>
     `;
 
@@ -233,9 +239,7 @@ function enviarPedido() {
     const totalProducto = producto.precio * producto.cantidad;
     subtotal += totalProducto;
 
-    mensaje += "- " + producto.nombre +
-      " x" + producto.cantidad +
-      " - $" + formatearNumero(totalProducto) + "\n";
+    mensaje += "- " + producto.nombre + " x" + producto.cantidad + " - $" + formatearNumero(totalProducto) + "\n";
   });
 
   const total = subtotal + DOMICILIO;
