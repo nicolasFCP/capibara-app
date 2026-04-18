@@ -64,6 +64,11 @@
         <p>Abierto</p>
       </div>
 
+      <div class="card tienda" onclick="abrirTienda('Multicolores la casa de las pinturas')">
+  <h3>Multicolores la casa de las pinturas</h3>
+  <p>Abierto · 7 AM - 12 PM / 2 PM - 6 PM</p>
+</div>
+
       <button type="button" class="btn btn-secundario" onclick="mostrarPantalla('inicio')">
         Volver
       </button>
@@ -71,37 +76,50 @@
 
     <!-- PRODUCTOS -->
     <section id="productos" class="pantalla">
-      <h2 id="titulo-tienda">Productos</h2>
+  <h2 id="titulo-tienda">Productos</h2>
 
-      <div id="info-tienda" class="info-tienda"></div>
-      <div id="lista-productos"></div>
+  <div id="info-tienda" class="info-tienda"></div>
+  <div id="lista-productos"></div>
 
-      <button type="button" class="btn" onclick="irAlCarrito()">Ir al carrito</button>
-      <button type="button" class="btn btn-secundario" onclick="mostrarPantalla('tiendas')">
-        Volver
-      </button>
-    </section>
+  <div class="espacio-barra-fija"></div>
+
+  <div id="barra-carrito-fija" class="barra-fija">
+    <button type="button" class="btn btn-secundario mitad" onclick="mostrarPantalla('tiendas')">
+      Volver
+    </button>
+
+    <button type="button" class="btn btn-carrito-fijo mitad" onclick="irAlCarrito()">
+      🛒 Ver pedido (<span id="contador-carrito">0</span>)
+    </button>
+  </div>
+</section>
 
     <!-- CARRITO -->
     <section id="carrito" class="pantalla">
-      <h2>Carrito</h2>
+  <h2>Carrito</h2>
 
-      <div id="tienda-carrito"></div>
-      <div id="lista-carrito" class="lista-carrito"></div>
+  <div id="tienda-carrito"></div>
+  <div id="lista-carrito" class="lista-carrito"></div>
 
-      <div class="resumen">
-        <p id="subtotal">Subtotal: $0</p>
-        <p id="domicilio">Domicilio: $5.000</p>
-        <p id="total">Total: $5.000</p>
-      </div>
+  <div class="resumen">
+    <p id="subtotal">Subtotal: $0</p>
+    <p id="domicilio">Domicilio: $5.000</p>
+    <p id="total">Total: $5.000</p>
+  </div>
 
-      <button type="button" class="btn btn-peligro" onclick="vaciarCarrito()">Vaciar carrito</button>
-      <button type="button" class="btn" onclick="mostrarPantalla('pedido')">Continuar pedido</button>
-      <button type="button" class="btn btn-secundario" onclick="mostrarPantalla('productos')">
-        Volver
-      </button>
-    </section>
+  <button type="button" class="btn btn-peligro" onclick="vaciarCarrito()">Vaciar carrito</button>
 
+  <div class="espacio-barra-fija"></div>
+
+  <div class="barra-fija">
+    <button type="button" class="btn btn-secundario mitad" onclick="mostrarPantalla('productos')">
+      Volver
+    </button>
+    <button type="button" class="btn principal mitad" onclick="mostrarPantalla('pedido')">
+      Continuar pedido
+    </button>
+  </div>
+</section>
     <!-- PEDIDO -->
     <section id="pedido" class="pantalla">
       <h2>Confirmar pedido</h2>
@@ -120,5 +138,8 @@
   </main>
 
   <script src="script.js"></script>
+  <button id="btn-carrito-fijo" onclick="irAlCarrito()">
+  🛒 Ver pedido
+</button>
 </body>
 </html>

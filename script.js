@@ -1,18 +1,82 @@
 const DOMICILIO = 5000;
+const numeroWhatsApp = "573115666476";
+
 let carrito = [];
 let tiendaActual = "";
 
-const tiendas = {
+const tiendasInfo = {
+  "Droguería San Juan": {
+    direccion: "Calle 14 N 15 760 - Centro",
+    responsable: "Fernando Caballero",
+    horario: "8 AM a 8 PM",
+    pagos: "Efectivo, Nequi, Daviplata",
+    entrega: "10 a 20 min",
+    mensaje: "Medicamentos disponibles con entrega confiable en Tame"
+  },
+  "Supermercado Sur": {
+    direccion: "Tame",
+    responsable: "Pendiente",
+    horario: "Horario por definir",
+    pagos: "Efectivo",
+    entrega: "Según zona",
+    mensaje: "Productos básicos para tu hogar"
+  },
+   "Multicolores la casa de las pinturas": {
+    direccion: "Calle 13 #16-82 - Barrio Sucre",
+    responsable: "Jeferson Caballero",
+    horario: "7 AM a 12 PM - 2 PM a 6 PM",
+    pagos: "Efectivo, Nequi, Daviplata",
+    entrega: "15 minutos",
+    mensaje: "Pinturas y materiales para construcción, hogar y negocio"
+  },
+};
+
+const productosPorTienda = {
   "Droguería San Juan": [
-    { nombre: "Acetaminofén", precio: 2000 },
-    { nombre: "Vitamina C", precio: 5000 },
-    { nombre: "Suero oral", precio: 3000 }
+    { nombre: "Acetaminofén jarabe 120ml sabor cereza", precio: 5500, destacado: true },
+    { nombre: "Azitromicina suspensión 200mg*15ml", precio: 28000, destacado: false },
+    { nombre: "Bedoyecta 3 ampollas", precio: 70000, destacado: false },
+    { nombre: "Neurobion 3 ampollas", precio: 120000, destacado: false },
+    { nombre: "Api fort ampolla bebible 12ml", precio: 55000, destacado: false },
+    { nombre: "Pedialyte 60 coco frasco 550ml", precio: 10000, destacado: false },
+    { nombre: "Pedialyte 60 fresa frasco 550ml", precio: 10000, destacado: false },
+    { nombre: "Pedialyte 60 uva frasco 550ml", precio: 10000, destacado: false },
+    { nombre: "Alcohol frasco 700ml", precio: 8500, destacado: false },
+    { nombre: "Alcohol frasco 350ml", precio: 5500, destacado: false },
+    { nombre: "Dolex 2+ jarabe 90ml", precio: 19000, destacado: false },
+    { nombre: "Diprospan 7gr 1ml", precio: 48000, destacado: false },
+    { nombre: "Gestavit DHA caja 30 caps", precio: 35000, destacado: false },
+    { nombre: "Figestomil jarabe 240ml", precio: 30000, destacado: false },
+    { nombre: "Hemocyton jarabe 240ml", precio: 36000, destacado: false },
+    { nombre: "Alka-Seltzer sobre x2", precio: 2000, destacado: false },
+    { nombre: "Sevedol forte", precio: 2000, destacado: false },
+    { nombre: "Propóleo jarabe 240ml", precio: 22000, destacado: false },
+    { nombre: "Polen frasco 240gr", precio: 18000, destacado: false },
+    { nombre: "Jarabe para la tos propóleo 240ml", precio: 22000, destacado: false },
+    { nombre: "Sildenafil caja 4 tabletas", precio: 8000, destacado: false },
+    { nombre: "Tadalafilo 5mg caja 30 tabletas", precio: 80000, destacado: false },
+    { nombre: "Shilajit ultra frasco 60 cápsulas", precio: 120000, destacado: false },
+    { nombre: "Omega 3 frasco 30 cápsulas", precio: 28000, destacado: false },
+    { nombre: "Gotas de San Juan frasco 25ml", precio: 20000, destacado: false },
+    { nombre: "Dulces sueños gotas 25ml", precio: 25000, destacado: false },
+    { nombre: "Gripofen sobre 5 tabletas", precio: 6500, destacado: false }
   ],
+
   "Supermercado Sur": [
-    { nombre: "Arroz 1 kg", precio: 4000 },
-    { nombre: "Aceite 1 L", precio: 12000 },
-    { nombre: "Huevos x12", precio: 9000 }
-  ]
+    { nombre: "Arroz 1 kg", precio: 4000, destacado: false },
+    { nombre: "Aceite 1 L", precio: 12000, destacado: false },
+    { nombre: "Huevos x12", precio: 9000, destacado: false }
+  ],
+
+  "Multicolores la casa de las pinturas": [
+    { nombre: "Pintura blanca 1 galón", precio: 45000, destacado: true },
+    { nombre: "Pintura azul 1 galón", precio: 48000, destacado: false },
+    { nombre: "Rodillo profesional", precio: 12000, destacado: false },
+    { nombre: "Brocha 2 pulgadas", precio: 6000, destacado: false },
+    { nombre: "Thinner 1 litro", precio: 10000, destacado: false },
+    { nombre: "Lija para pared", precio: 2000, destacado: false },
+    { nombre: "Esmalte negro brillante", precio: 30000, destacado: false }
+  ],
 };
 
 function mostrarPantalla(idPantalla) {
@@ -33,6 +97,7 @@ function mostrarPantalla(idPantalla) {
 function abrirTienda(nombreTienda) {
   tiendaActual = nombreTienda;
   carrito = [];
+  actualizarContadorCarrito();
 
   document.getElementById("titulo-tienda").textContent = nombreTienda;
 
@@ -42,37 +107,31 @@ function abrirTienda(nombreTienda) {
   infoTienda.innerHTML = "";
   listaProductos.innerHTML = "";
 
-  if (nombreTienda === "Droguería San Juan") {
+  const datos = tiendasInfo[nombreTienda];
+
+  if (datos) {
     infoTienda.innerHTML = `
       <div class="card tienda-destacada">
-        <h3>Droguería San Juan</h3>
-        <p>📍 Calle 14 N 15 76 - Centro</p>
-        <p>👤 Atención: Fernando Caballero</p>
-        <p>⏰ Horario: 8 AM a 8 PM</p>
-        <p>💳 Pagos: Efectivo, Nequi, Daviplata</p>
-        <p>🛵 Entrega estimada: 10 a 20 min</p>
-        <p>⭐ Medicamentos disponibles con entrega rápida en Tame</p>
+        <h3>${nombreTienda}</h3>
+        <p>📍 ${datos.direccion}</p>
+        <p>👤 Atención: ${datos.responsable}</p>
+        <p>⏰ Horario: ${datos.horario}</p>
+        <p>💳 Pagos: ${datos.pagos}</p>
+        <p>🛵 Entrega estimada: ${datos.entrega}</p>
+        <p>⭐ ${datos.mensaje}</p>
       </div>
     `;
   }
 
-  if (nombreTienda === "Supermercado Sur") {
-    infoTienda.innerHTML = `
-      <div class="card tienda-destacada">
-        <h3>Supermercado Sur</h3>
-        <p>🛒 Productos básicos para tu hogar</p>
-        <p>📍 Atención local en Tame</p>
-      </div>
-    `;
-  }
+  const productos = productosPorTienda[nombreTienda] || [];
 
-  tiendas[nombreTienda].forEach(function (producto) {
+  productos.forEach(function (producto) {
     const card = document.createElement("div");
     card.className = "card producto";
 
     let etiquetaExtra = "";
-    if (nombreTienda === "Droguería San Juan" && producto.nombre === "Acetaminofén") {
-      etiquetaExtra = `<p style="color: green; font-weight: bold;">🔥 Más solicitado</p>`;
+    if (producto.destacado) {
+      etiquetaExtra = `<p style="color: green; font-weight: bold;">🔥 Producto destacado</p>`;
     }
 
     card.innerHTML = `
@@ -82,7 +141,7 @@ function abrirTienda(nombreTienda) {
         ${etiquetaExtra}
         <small>Disponible</small>
       </div>
-      <button type="button" class="btn" onclick="agregar('${producto.nombre}', ${producto.precio})">Agregar</button>
+      <button type="button" class="btn" onclick="agregar('${producto.nombre.replace(/'/g, "\\'")}', ${producto.precio})">Agregar</button>
     `;
 
     listaProductos.appendChild(card);
@@ -106,9 +165,9 @@ function agregar(nombre, precio) {
     });
   }
 
-  alert(nombre + " agregado al carrito");
+  actualizarContadorCarrito();
+  mostrarConfirmacion(nombre);
 }
-
 function sumarProducto(nombre) {
   const producto = carrito.find(function (item) {
     return item.nombre === nombre;
@@ -117,6 +176,7 @@ function sumarProducto(nombre) {
   if (producto) {
     producto.cantidad += 1;
     actualizarCarrito();
+    actualizarContadorCarrito();
   }
 }
 
@@ -136,11 +196,14 @@ function restarProducto(nombre) {
   }
 
   actualizarCarrito();
+  actualizarContadorCarrito();
 }
+
 
 function vaciarCarrito() {
   carrito = [];
   actualizarCarrito();
+  actualizarContadorCarrito();
 }
 
 function irAlCarrito() {
@@ -187,8 +250,8 @@ function actualizarCarrito() {
         <p>Total producto: $${formatearNumero(totalProducto)}</p>
       </div>
       <div class="acciones-carrito">
-        <button type="button" class="btn btn-mini" onclick="restarProducto('${producto.nombre}')">-</button>
-        <button type="button" class="btn btn-mini" onclick="sumarProducto('${producto.nombre}')">+</button>
+        <button type="button" class="btn btn-mini" onclick="restarProducto('${producto.nombre.replace(/'/g, "\\'")}')">-</button>
+        <button type="button" class="btn btn-mini" onclick="sumarProducto('${producto.nombre.replace(/'/g, "\\'")}')">+</button>
       </div>
     `;
 
@@ -227,10 +290,12 @@ function enviarPedido() {
 
   mensaje += "Tienda: " + tiendaActual + "\n";
 
-  if (tiendaActual === "Droguería San Juan") {
-    mensaje += "Responsable: Fernando Caballero\n";
-    mensaje += "Dirección tienda: Calle 14 N 15 760 - Centro\n";
-    mensaje += "Tiempo estimado: 10 a 20 min\n\n";
+  const datos = tiendasInfo[tiendaActual];
+
+  if (datos) {
+    mensaje += "Responsable: " + datos.responsable + "\n";
+    mensaje += "Dirección tienda: " + datos.direccion + "\n";
+    mensaje += "Tiempo estimado: " + datos.entrega + "\n\n";
   } else {
     mensaje += "\n";
   }
@@ -251,7 +316,6 @@ function enviarPedido() {
   mensaje += "\nTeléfono cliente: " + telefono;
   mensaje += "\nDirección cliente: " + direccion;
 
-  const numeroWhatsApp = "573115666476";
   const url = "https://wa.me/" + numeroWhatsApp + "?text=" + encodeURIComponent(mensaje);
 
   window.open(url, "_blank");
@@ -260,3 +324,28 @@ function enviarPedido() {
 function formatearNumero(numero) {
   return numero.toLocaleString("es-CO");
 }
+
+function mostrarConfirmacion(nombre) {
+  const mensaje = document.createElement("div");
+  mensaje.textContent = nombre + " agregado ✔";
+  mensaje.className = "toast";
+
+  document.body.appendChild(mensaje);
+
+  setTimeout(() => {
+    mensaje.remove();
+  }, 2000);
+}
+
+function actualizarContadorCarrito() {
+  const contador = document.getElementById("contador-carrito");
+
+  if (!contador) return;
+
+  const totalUnidades = carrito.reduce(function (acumulado, producto) {
+    return acumulado + producto.cantidad;
+  }, 0);
+
+  contador.textContent = totalUnidades;
+}
+actualizarContadorCarrito();

@@ -326,3 +326,82 @@ h2 {
   
   background: rgba(20, 50, 30, 0.4);
 }
+.scroll-indicador {
+  text-align: center;
+  color: #e4b84c;
+  font-weight: bold;
+  margin: 10px 0;
+  animation: subirBajar 1.5s infinite;
+}
+
+@keyframes subirBajar {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+  100% { transform: translateY(0); }
+}
+
+#btn-carrito-fijo {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #e4b84c;
+  color: #000;
+  border: none;
+  padding: 14px 18px;
+  border-radius: 30px;
+  font-weight: bold;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  z-index: 999;
+}
+
+.toast {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1f7a4d;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  z-index: 999;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.barra-fija {
+  position: fixed;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 24px);
+  max-width: 420px;
+  display: flex;
+  gap: 10px;
+  background: rgba(17, 24, 18, 0.88);
+  padding: 10px;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(8px);
+  z-index: 999;
+}
+
+.espacio-barra-fija {
+  height: 95px;
+}
+
+.mitad {
+  width: 50%;
+  margin-top: 0;
+}
+
+.btn-carrito-fijo {
+  width: 100%;
+  margin-top: 0;
+  background: linear-gradient(135deg, #e4b84c, #f0cc6a);
+  color: #161c12;
+  font-weight: 800;
+}
+
+.oculto {
+  display: none !important;
+}
