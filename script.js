@@ -5,14 +5,15 @@ let carrito = [];
 let tiendaActual = "";
 
 const tiendasInfo = {
-  "Droguería San Juan": {
-    direccion: "Calle 14 N 15 760 - Centro",
-    responsable: "Fernando Caballero",
-    horario: "8 AM a 8 PM",
-    pagos: "Efectivo, Nequi, Daviplata",
-    entrega: "10 a 20 min",
-    mensaje: "Medicamentos disponibles con entrega confiable en Tame"
-  },
+  "Droguería Santa Ana": {
+  direccion: "Esquina, Calle 14 # 13-89",
+  responsable: "Leonardo Gil",
+  horario: "8am a 7pm",
+  pagos: "Efectivo",
+  entrega: "10 a 20 min",
+  mensaje: "Medicamentos y productos de droguería disponibles en Tame",
+  logo: "img/logo-drogueria.png"
+},
   "Supermercado Sur": {
     direccion: "Tame",
     responsable: "Pendiente",
@@ -27,39 +28,21 @@ const tiendasInfo = {
     horario: "7 AM a 12 PM - 2 PM a 6 PM",
     pagos: "Efectivo, Nequi, Daviplata",
     entrega: "15 minutos",
-    mensaje: "Pinturas y materiales para construcción, hogar y negocio"
+    mensaje: "Pinturas y materiales para construcción, hogar y negocio",
+    logo: "img/logo-pinturas.png"
   },
 };
 
 const productosPorTienda = {
-  "Droguería San Juan": [
-    { nombre: "Acetaminofén jarabe 120ml sabor cereza", precio: 5500, destacado: true },
-    { nombre: "Azitromicina suspensión 200mg*15ml", precio: 28000, destacado: false },
-    { nombre: "Bedoyecta 3 ampollas", precio: 70000, destacado: false },
-    { nombre: "Neurobion 3 ampollas", precio: 120000, destacado: false },
-    { nombre: "Api fort ampolla bebible 12ml", precio: 55000, destacado: false },
-    { nombre: "Pedialyte 60 coco frasco 550ml", precio: 10000, destacado: false },
-    { nombre: "Pedialyte 60 fresa frasco 550ml", precio: 10000, destacado: false },
-    { nombre: "Pedialyte 60 uva frasco 550ml", precio: 10000, destacado: false },
-    { nombre: "Alcohol frasco 700ml", precio: 8500, destacado: false },
-    { nombre: "Alcohol frasco 350ml", precio: 5500, destacado: false },
-    { nombre: "Dolex 2+ jarabe 90ml", precio: 19000, destacado: false },
-    { nombre: "Diprospan 7gr 1ml", precio: 48000, destacado: false },
-    { nombre: "Gestavit DHA caja 30 caps", precio: 35000, destacado: false },
-    { nombre: "Figestomil jarabe 240ml", precio: 30000, destacado: false },
-    { nombre: "Hemocyton jarabe 240ml", precio: 36000, destacado: false },
-    { nombre: "Alka-Seltzer sobre x2", precio: 2000, destacado: false },
-    { nombre: "Sevedol forte", precio: 2000, destacado: false },
-    { nombre: "Propóleo jarabe 240ml", precio: 22000, destacado: false },
-    { nombre: "Polen frasco 240gr", precio: 18000, destacado: false },
-    { nombre: "Jarabe para la tos propóleo 240ml", precio: 22000, destacado: false },
-    { nombre: "Sildenafil caja 4 tabletas", precio: 8000, destacado: false },
-    { nombre: "Tadalafilo 5mg caja 30 tabletas", precio: 80000, destacado: false },
-    { nombre: "Shilajit ultra frasco 60 cápsulas", precio: 120000, destacado: false },
-    { nombre: "Omega 3 frasco 30 cápsulas", precio: 28000, destacado: false },
-    { nombre: "Gotas de San Juan frasco 25ml", precio: 20000, destacado: false },
-    { nombre: "Dulces sueños gotas 25ml", precio: 25000, destacado: false },
-    { nombre: "Gripofen sobre 5 tabletas", precio: 6500, destacado: false }
+ "Droguería Santa Ana": [
+  { nombre: "Acetaminofén tabletas", precio: 2000, destacado: true },
+  { nombre: "Ibuprofeno", precio: 3000, destacado: false },
+  { nombre: "Vitamina C", precio: 5000, destacado: false },
+  { nombre: "Suero oral", precio: 3500, destacado: false },
+  { nombre: "Alcohol antiséptico 350ml", precio: 5500, destacado: false },
+  { nombre: "Tapabocas unidad", precio: 1000, destacado: false },
+  { nombre: "Loratadina", precio: 2500, destacado: false },
+  { nombre: "Alka-Seltzer sobre", precio: 2000, destacado: false }
   ],
 
   "Supermercado Sur": [
@@ -110,18 +93,21 @@ function abrirTienda(nombreTienda) {
   const datos = tiendasInfo[nombreTienda];
 
   if (datos) {
-    infoTienda.innerHTML = `
-      <div class="card tienda-destacada">
-        <h3>${nombreTienda}</h3>
-        <p>📍 ${datos.direccion}</p>
-        <p>👤 Atención: ${datos.responsable}</p>
-        <p>⏰ Horario: ${datos.horario}</p>
-        <p>💳 Pagos: ${datos.pagos}</p>
-        <p>🛵 Entrega estimada: ${datos.entrega}</p>
-        <p>⭐ ${datos.mensaje}</p>
-      </div>
-    `;
-  }
+  infoTienda.innerHTML = `
+    <div class="card tienda-destacada">
+
+      ${datos.logo ? `<img src="${datos.logo}" class="logo-tienda">` : ""}
+
+      <h3>${nombreTienda}</h3>
+      <p>📍 ${datos.direccion}</p>
+      <p>👤 Atención: ${datos.responsable}</p>
+      <p>⏰ Horario: ${datos.horario}</p>
+      <p>💳 Pagos: ${datos.pagos}</p>
+      <p>🛵 Entrega estimada: ${datos.entrega}</p>
+      <p>⭐ ${datos.mensaje}</p>
+    </div>
+  `;
+}
 
   const productos = productosPorTienda[nombreTienda] || [];
 

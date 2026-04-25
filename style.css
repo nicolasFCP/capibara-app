@@ -7,7 +7,7 @@
   --crema: #f7f2e8;
   --texto-oscuro: #1c281d;
   --texto-claro: rgba(255, 255, 255, 0.92);
-  --texto-suave: #4a5b4c;
+  --texto-suave: #555;
   --borde: rgba(47, 107, 61, 0.12);
   --sombra: 0 12px 26px rgba(20, 56, 35, 0.10);
 }
@@ -20,9 +20,8 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   background:
-    radial-gradient(circle at top, rgba(228, 184, 76, 0.14), transparent 24%),
-    linear-gradient(180deg, #f7f2e8 0%, #eef2df 52%, #e5edd7 100%);
-  color: var(--texto-oscuro);
+    linear-gradient(180deg, #f7f2e8 0%, #eef2df 100%);
+  color: #1a1a1a;
 }
 
 .app {
@@ -117,8 +116,8 @@ body {
   margin: 0 0 14px;
   padding: 8px 14px;
   border-radius: 999px;
-  background: rgba(47, 168, 102, 0.15);
-  color: #c7ffd8;
+  background: #e6f4ea;
+  color: #2e7d32;
   font-size: 13px;
   font-weight: 700;
 }
@@ -172,17 +171,18 @@ body {
 h2 {
   text-align: center;
   margin-bottom: 16px;
-  color: var(--verde-profundo);
+  color: #1a1a1a;
+  font-weight: 800;
 }
 
 .card {
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid var(--borde);
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
   border-radius: 18px;
   padding: 16px;
   margin: 12px 0;
-  box-shadow: var(--sombra);
-  color: var(--texto-oscuro);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  color: #1a1a1a;
 }
 
 .tienda {
@@ -242,6 +242,12 @@ h2 {
   font-size: 16px;
   font-weight: 700;
   cursor: pointer;
+  transition: transform 0.05s ease, box-shadow 0.1s ease;
+}
+
+.btn:active {
+  transform: scale(0.97);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
 .principal {
@@ -404,4 +410,11 @@ h2 {
 
 .oculto {
   display: none !important;
+}
+.logo-tienda {
+  width: 100px;
+  height: auto;
+  display: block;
+  margin: 0 auto 10px;
+  border-radius: 12px;
 }
