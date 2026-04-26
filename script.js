@@ -22,6 +22,18 @@ const tiendasInfo = {
     entrega: "Según zona",
     mensaje: "Productos básicos para tu hogar"
   },
+
+"APIESTEBAN": {
+  direccion: "cra 9 #13-15",
+  responsable: "Briyid López",
+  horario: "8 am - 7 pm",
+  pagos: "Efectivo, Nequi, Daviplata",
+  entrega: "20-30 minutos",
+  mensaje: "Productos naturales y derivados de la miel en Tame",
+  logo: "img/apiesteban/logo-apiesteban.png",
+  tema: "tema-apiesteban"
+},
+
    "Multicolores la casa de las pinturas": {
     direccion: "Calle 13 #16-82 - Barrio Sucre",
     responsable: "Jeferson Caballero",
@@ -50,6 +62,16 @@ const productosPorTienda = {
     { nombre: "Aceite 1 L", precio: 12000, destacado: false },
     { nombre: "Huevos x12", precio: 9000, destacado: false }
   ],
+
+"APIESTEBAN": [
+  { nombre: "Miel Multifloral Apiesteban 1000gr", precio: 35000, destacado: true, imagen: "img/apiesteban/Miel-Multifloral-Apiesteban-1000gr.png" },
+  { nombre: "Miel Multifloral Apiesteban 500gr", precio: 20000, destacado: false, imagen: "img/apiesteban/Miel-Multifloral-Apiesteban-500gr.png" },
+  { nombre: "Jarabe", precio: 22000, destacado: false, imagen: "img/apiesteban/Jarabe.png" },
+  { nombre: "Propoleo", precio: 20000, destacado: false, imagen: "img/apiesteban/Propoleo.png" },
+  { nombre: "Polen Natural", precio: 20000, destacado: false, imagen: "img/apiesteban/Polen-Natural.png" },
+  { nombre: "Miel Angelita 100% Natural", precio: 15000, destacado: false, imagen: "img/apiesteban/Miel-Natural-Apiesteban.png"},
+  { nombre: "Miel Natural Apiesteban", precio: 15000, destacado: false, imagen: "img/apiesteban/Miel-Natural-Apiesteban.png"},
+],
 
   "Multicolores la casa de las pinturas": [
     { nombre: "Pintura blanca 1 galón", precio: 45000, destacado: true },
@@ -94,7 +116,7 @@ function abrirTienda(nombreTienda) {
 
   if (datos) {
   infoTienda.innerHTML = `
-    <div class="card tienda-destacada">
+    <div class="card tienda-destacada ${datos.tema || ''}">
 
       ${datos.logo ? `<img src="${datos.logo}" class="logo-tienda">` : ""}
 
@@ -117,18 +139,19 @@ function abrirTienda(nombreTienda) {
 
     let etiquetaExtra = "";
     if (producto.destacado) {
-      etiquetaExtra = `<p style="color: green; font-weight: bold;">🔥 Producto destacado</p>`;
+      etiquetaExtra = `<p class="destacado">🔥 Más vendido</p>`;
     }
 
     card.innerHTML = `
-      <div>
-        <h3>${producto.nombre}</h3>
-        <p>$${formatearNumero(producto.precio)}</p>
-        ${etiquetaExtra}
-        <small>Disponible</small>
-      </div>
-      <button type="button" class="btn" onclick="agregar('${producto.nombre.replace(/'/g, "\\'")}', ${producto.precio})">Agregar</button>
-    `;
+  <div>
+    <img src="${producto.imagen}" class="img-producto">
+    <h3>${producto.nombre}</h3>
+    <p>$${formatearNumero(producto.precio)}</p>
+    ${etiquetaExtra}
+    <small>Disponible</small>
+  </div>
+  <button type="button" class="btn" onclick="agregar('${producto.nombre}', ${producto.precio})">Agregar</button>
+`;
 
     listaProductos.appendChild(card);
   });

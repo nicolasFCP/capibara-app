@@ -418,3 +418,23 @@ h2 {
   margin: 0 auto 10px;
   border-radius: 12px;
 }
+
+.tema-apiesteban {
+  background:
+    linear-gradient(rgba(255,255,255,0.78), rgba(255,255,255,0.78)),
+    url("img/apiesteban/fondo-apiesteban.png");
+  background-size: cover;
+  background-position: center;
+  border-left: 6px solid #e4b84c;
+}
+.img-producto {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 8px;
+}
+.destacado {
+  color: #e67e22;
+  font-weight: bold;
+}
