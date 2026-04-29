@@ -14,6 +14,17 @@ const tiendasInfo = {
   mensaje: "Medicamentos y productos de droguería disponibles en Tame",
   logo: "img/logo-drogueria.png"
 },
+
+"La Brasa Araucana": {
+  direccion: "cra 10#13-67",
+  responsable: "Bryan",
+  horario: "9am a 9 pm",
+  pagos: "Efectivo",
+  entrega: "20-30 minutos",
+  mensaje: "Pollo asado y comidas rápidas en Tame",
+  logo: "img/brasaaraucana/logolabrasaaraucana.png"
+},
+
   "Supermercado Sur": {
     direccion: "Tame",
     responsable: "Pendiente",
@@ -56,6 +67,35 @@ const productosPorTienda = {
   { nombre: "Loratadina", precio: 2500, destacado: false },
   { nombre: "Alka-Seltzer sobre", precio: 2000, destacado: false }
   ],
+
+"La Brasa Araucana": [
+  {
+    nombre: "Pollo asado entero",
+    precio: 40000,
+    destacado: true,
+    imagen: "img/brasaaraucana/asadoentero.png"
+  },
+  {
+    nombre: "Medio pollo asado",
+    precio: 22000,
+    imagen: "img/brasaaraucana/medioasado.png"
+  },
+  {
+    nombre: "1/4 de pollo asado",
+    precio: 12000,
+    imagen: "img/brasaaraucana/cuartoasado.png"
+  },
+  {
+    nombre: "Papas fritas",
+    precio: 6000,
+    imagen: "img/brasaaraucana/papasfritas.png"
+  },
+  {
+    nombre: "Gaseosa Coca Cola 1.5L",
+    precio: 7000,
+    imagen: "img/brasaaraucana/coca.png"
+  }
+],
 
   "Supermercado Sur": [
     { nombre: "Arroz 1 kg", precio: 4000, destacado: false },
