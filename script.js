@@ -357,11 +357,11 @@ if (idPantalla === "pedido") {
   cargarZonasEntrega();
 }
   if (idPantalla === "tiendas") {
-  mostrarCategoria("Restaurantes");
+  mostrarCategoria("Restaurantes", false);
 }
 }
 
-function mostrarCategoria(nombreCategoria) {
+function mostrarCategoria(nombreCategoria, hacerScroll = true) {
   const tituloCategoria = document.getElementById("titulo-categoria");
   const listaTiendas = document.getElementById("lista-tiendas");
 
@@ -389,6 +389,18 @@ function mostrarCategoria(nombreCategoria) {
 
     listaTiendas.appendChild(card);
   });
+  if (hacerScroll) {
+  setTimeout(function () {
+    const tituloCategoria = document.getElementById("titulo-categoria");
+
+    if (tituloCategoria) {
+      tituloCategoria.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+  }, 100);
+}
 }
 
 function abrirTienda(nombreTienda) {
