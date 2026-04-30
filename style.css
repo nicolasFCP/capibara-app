@@ -438,3 +438,55 @@ h2 {
   color: #e67e22;
   font-weight: bold;
 }
+
+.descripcion-producto {
+  color: #555;
+  font-size: 14px;
+  line-height: 1.35;
+  margin: 6px 0;
+}
+
+.aviso-menu {
+  background: #fff8e8;
+  border-left: 6px solid #e4b84c;
+}
+
+.categorias-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.categoria {
+  text-align: center;
+  padding: 16px 10px;
+}
+
+.categoria-icono {
+  font-size: 34px;
+  margin-bottom: 8px;
+}
+
+.categoria h3 {
+  margin: 6px 0;
+  font-size: 16px;
+}
+
+.categoria p {
+  margin: 0;
+  font-size: 13px;
+  color: #555;
+}
+
+.titulo-categoria {
+  margin-top: 18px;
+}
+
+.logo-lista-tienda {
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+  border-radius: 12px;
+  margin-bottom: 8px;
+}

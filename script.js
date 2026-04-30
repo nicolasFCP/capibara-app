@@ -15,6 +15,26 @@ const tiendasInfo = {
   logo: "img/logo-drogueria.png"
 },
 
+"Como En Casa": {
+  direccion: "cll 14#23-04",
+  responsable: "Como en casa",
+  horario: "7am a 2.30 pm",
+  pagos: "Efectivo,Nequi,Daviplata",
+  entrega: "20-30 minutos",
+  mensaje: "Desayunos, almuerzos y sabor que te hace sentir en casa",
+  logo: "img/comoencasa/logocomoencasa.png"
+},
+
+"Daza Cacao Premium": {
+  direccion: "calle 15 # 22-46",
+  responsable: "Daza Cacao",
+  horario: "9am a 12pm / 3pm a 8pm",
+  pagos: "Efectivo, Nequi, Daviplata",
+  entrega: "20-30 minutos",
+  mensaje: "Bebidas y postres a base de cacao premium",
+  logo: "img/dazacacao/logodazacacao.png"
+},
+
 "La Brasa Araucana": {
   direccion: "cra 10#13-67",
   responsable: "Bryan",
@@ -56,6 +76,26 @@ const tiendasInfo = {
   },
 };
 
+const tiendasPorCategoria = {
+  "Restaurantes": [
+    "Como En Casa",
+    "La Brasa Araucana",
+    "Daza Cacao Premium"
+  ],
+  "Droguerías": [
+    "Droguería Santa Ana"
+  ],
+  "Mercado": [
+    "Supermercado Sur"
+  ],
+  "Naturales": [
+    "APIESTEBAN"
+  ],
+  "Hogar": [
+    "Multicolores la casa de las pinturas"
+  ]
+};
+
 const productosPorTienda = {
  "Droguería Santa Ana": [
   { nombre: "Acetaminofén tabletas", precio: 2000, destacado: true },
@@ -67,6 +107,109 @@ const productosPorTienda = {
   { nombre: "Loratadina", precio: 2500, destacado: false },
   { nombre: "Alka-Seltzer sobre", precio: 2000, destacado: false }
   ],
+
+"Como En Casa": [
+  {
+    nombre: "Caldo de costilla de res",
+    precio: 7000,
+    destacado: true,
+    horario: "desayuno",
+    descripcion: "Disponible en horario de desayunos"
+  },
+  {
+    nombre: "Caldo con huevo",
+    precio: 6000,
+    horario: "desayuno",
+    descripcion: "Disponible en horario de desayunos"
+  },
+  {
+    nombre: "Changua",
+    precio: 10000,
+    horario: "desayuno",
+    descripcion: "Disponible en horario de desayunos"
+  },
+  {
+    nombre: "Almuerzo proteína $13.000",
+    precio: 13000,
+    destacado: true,
+    horario: "almuerzo",
+    descripcion: "Proteínas: estofado, carne molida, carne desmechada o albóndigas. Incluye sopa, principio y acompañamientos."
+  },
+  {
+    nombre: "Almuerzo proteína $17.000",
+    precio: 17000,
+    horario: "almuerzo",
+    descripcion: "Proteínas: pollo al horno, milanesa, alitas apanadas, pollo salteado, cerdo salteado o arroz oriental."
+  },
+  {
+    nombre: "Cerdo agridulce",
+    precio: 18000,
+    horario: "almuerzo",
+    descripcion: "Incluye sopa, principio y acompañamientos disponibles."
+  },
+  {
+    nombre: "Mojarra frita",
+    precio: 25000,
+    horario: "almuerzo",
+    descripcion: "Plato especial."
+  },
+  {
+    nombre: "Trucha al ajillo",
+    precio: 25000,
+    horario: "almuerzo",
+    descripcion: "Plato especial."
+  }
+],
+
+"Daza Cacao Premium": [
+  {
+    nombre: "Chocomigao",
+    precio: 13500,
+    destacado: true,
+    descripcion: "Chocolate premium caliente con queso, pan integral, galletas dulces y palitoque"
+  },
+  {
+    nombre: "Chocolate con arepa",
+    precio: 11000,
+    descripcion: "Taza de chocolate premium caliente con arepa llena de mucho queso"
+  },
+  {
+    nombre: "Chocolate con pan y queso",
+    precio: 11000,
+    descripcion: "Taza de chocolate premium caliente con porción de queso doble crema y pan integral"
+  },
+  {
+    nombre: "Chocolate frío",
+    precio: 12500,
+    descripcion: "Granizado de chocolate premium con leche, refrescante y cremoso"
+  },
+  {
+    nombre: "Helado con galleta",
+    precio: 10000,
+    descripcion: "Helado de chocolate premium con galleta de chocolate"
+  },
+  {
+    nombre: "Brownie con helado",
+    precio: 13500,
+    destacado: true,
+    descripcion: "Porción de brownie con helado y salsa de chocolate premium"
+  },
+  {
+    nombre: "Vino tinto y chocolate",
+    precio: 17000,
+    descripcion: "Copa de vino tinto y barra de chocolate con panela 80% cacao premium"
+  },
+  {
+    nombre: "Chocolate 100% puro 60g",
+    precio: 21000,
+    descripcion: "Barra de chocolate 100% puro cacao premium"
+  },
+  {
+    nombre: "Chocolate con panela 80% 30g",
+    precio: 9000,
+    descripcion: "Barra de chocolate con panela 80% cacao premium"
+  }
+],
 
 "La Brasa Araucana": [
   {
@@ -137,6 +280,39 @@ function mostrarPantalla(idPantalla) {
     pantallaDestino.classList.add("activa");
     window.scrollTo(0, 0);
   }
+  if (idPantalla === "tiendas") {
+  mostrarCategoria("Restaurantes");
+}
+}
+
+function mostrarCategoria(nombreCategoria) {
+  const tituloCategoria = document.getElementById("titulo-categoria");
+  const listaTiendas = document.getElementById("lista-tiendas");
+
+  tituloCategoria.textContent = nombreCategoria;
+  listaTiendas.innerHTML = "";
+
+  const tiendas = tiendasPorCategoria[nombreCategoria] || [];
+
+  tiendas.forEach(function (nombreTienda) {
+    const datos = tiendasInfo[nombreTienda];
+
+    const card = document.createElement("div");
+    card.className = "card tienda";
+    card.onclick = function () {
+      abrirTienda(nombreTienda);
+    };
+
+    card.innerHTML = `
+      ${datos && datos.logo ? `<img src="${datos.logo}" class="logo-lista-tienda">` : ""}
+      <div>
+        <h3>${nombreTienda}</h3>
+        <p>${datos ? datos.mensaje : "Tienda disponible"}</p>
+      </div>
+    `;
+
+    listaTiendas.appendChild(card);
+  });
 }
 
 function abrirTienda(nombreTienda) {
@@ -173,6 +349,18 @@ function abrirTienda(nombreTienda) {
 
   const productos = productosPorTienda[nombreTienda] || [];
 
+  if (nombreTienda === "Como En Casa") {
+  const avisoHorario = document.createElement("div");
+  avisoHorario.className = "card aviso-menu";
+  avisoHorario.innerHTML = `
+    <h3>Menú por horarios</h3>
+    <p><strong>Desayunos:</strong> 7:00 a.m. a 10:30 a.m.</p>
+    <p><strong>Almuerzos:</strong> 11:00 a.m. a 2:30 p.m.</p>
+    <p>Los productos se muestran como muestra inicial. Para pedidos reales se confirma disponibilidad por WhatsApp.</p>
+  `;
+  listaProductos.appendChild(avisoHorario);
+}
+
   productos.forEach(function (producto) {
     const card = document.createElement("div");
     card.className = "card producto";
@@ -184,13 +372,14 @@ function abrirTienda(nombreTienda) {
 
     card.innerHTML = `
   <div>
-    <img src="${producto.imagen}" class="img-producto">
+    ${producto.imagen ? `<img src="${producto.imagen}" class="img-producto">` : ""}
     <h3>${producto.nombre}</h3>
     <p>$${formatearNumero(producto.precio)}</p>
+    ${producto.descripcion ? `<p class="descripcion-producto">${producto.descripcion}</p>` : ""}
     ${etiquetaExtra}
     <small>Disponible</small>
   </div>
-  <button type="button" class="btn" onclick="agregar('${producto.nombre}', ${producto.precio})">Agregar</button>
+  <button type="button" class="btn" onclick="agregar('${producto.nombre.replace(/'/g, "\\'")}', ${producto.precio})">Agregar</button>
 `;
 
     listaProductos.appendChild(card);

@@ -52,37 +52,48 @@
 
     <!-- TIENDAS -->
     <section id="tiendas" class="pantalla">
-      <h2>Tiendas disponibles</h2>
+  <h2>Elige una categoría</h2>
 
-      <div class="card tienda" onclick="abrirTienda('Droguería Santa Ana')">
-        <h3>Droguería Santa Ana</h3>
-        <p>Abierto · 8AM - 8PM</p>
-      </div>
+  <div class="categorias-grid">
+    <div class="card categoria" onclick="mostrarCategoria('Restaurantes')">
+      <div class="categoria-icono">🍽️</div>
+      <h3>Restaurantes</h3>
+      <p>Comidas y bebidas</p>
+    </div>
 
-      <div class="card tienda" onclick="abrirTienda('La Brasa Araucana')">
-  <h3>La Brasa Araucana</h3>
-  <p>Pollo asado y comidas rápidas</p>
-</div>
+    <div class="card categoria" onclick="mostrarCategoria('Droguerías')">
+      <div class="categoria-icono">💊</div>
+      <h3>Droguerías</h3>
+      <p>Salud y cuidado</p>
+    </div>
 
-      <div class="card tienda" onclick="abrirTienda('Supermercado Sur')">
-        <h3>Supermercado Sur</h3>
-        <p>Abierto</p>
-      </div>
+    <div class="card categoria" onclick="mostrarCategoria('Mercado')">
+      <div class="categoria-icono">🛒</div>
+      <h3>Mercado</h3>
+      <p>Productos básicos</p>
+    </div>
 
-<div class="card tienda" onclick="abrirTienda('APIESTEBAN')">
-  <h3>APIESTEBAN</h3>
-  <p>Productos naturales · Miel y propóleo</p>
-</div>
+    <div class="card categoria" onclick="mostrarCategoria('Naturales')">
+      <div class="categoria-icono">🍯</div>
+      <h3>Naturales</h3>
+      <p>Miel y bienestar</p>
+    </div>
 
-      <div class="card tienda" onclick="abrirTienda('Multicolores la casa de las pinturas')">
-  <h3>Multicolores la casa de las pinturas</h3>
-  <p>Abierto · 7 AM - 12 PM / 2 PM - 6 PM</p>
-</div>
+    <div class="card categoria" onclick="mostrarCategoria('Hogar')">
+      <div class="categoria-icono">🎨</div>
+      <h3>Hogar</h3>
+      <p>Pinturas y materiales</p>
+    </div>
+  </div>
 
-      <button type="button" class="btn btn-secundario" onclick="mostrarPantalla('inicio')">
-        Volver
-      </button>
-    </section>
+  <h2 id="titulo-categoria" class="titulo-categoria">Tiendas disponibles</h2>
+
+  <div id="lista-tiendas"></div>
+
+  <button type="button" class="btn btn-secundario" onclick="mostrarPantalla('inicio')">
+    Volver
+  </button>
+</section>
 
     <!-- PRODUCTOS -->
     <section id="productos" class="pantalla">
