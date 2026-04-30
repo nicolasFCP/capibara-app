@@ -4,6 +4,78 @@ const numeroWhatsApp = "573115666476";
 let carrito = [];
 let tiendaActual = "";
 
+const zonasPorTienda = {
+  "Droguería Santa Ana": {
+    "Centro": 5000,
+    "Sucre": 5000,
+    "San Antonio": 6000,
+    "20 de Julio": 6000,
+    "San Luis": 7000,
+    "El Porvenir": 7000,
+    "Otra zona": "confirmar"
+  },
+
+  "Como En Casa": {
+    "Centro": 5000,
+    "Sucre": 5000,
+    "San Antonio": 6000,
+    "20 de Julio": 6000,
+    "San Luis": 7000,
+    "El Porvenir": 7000,
+    "Otra zona": "confirmar"
+  },
+
+  "Daza Cacao Premium": {
+    "Centro": 5000,
+    "Sucre": 5000,
+    "San Antonio": 6000,
+    "20 de Julio": 6000,
+    "San Luis": 7000,
+    "El Porvenir": 7000,
+    "Otra zona": "confirmar"
+  },
+
+  "La Brasa Araucana": {
+    "Centro": 5000,
+    "Sucre": 5000,
+    "San Antonio": 6000,
+    "20 de Julio": 6000,
+    "San Luis": 7000,
+    "El Porvenir": 7000,
+    "Otra zona": "confirmar"
+  },
+
+  "APIESTEBAN": {
+    "Centro": 5000,
+    "Sucre": 5000,
+    "San Antonio": 6000,
+    "20 de Julio": 6000,
+    "San Luis": 7000,
+    "El Porvenir": 7000,
+    "Otra zona": "confirmar"
+  },
+
+  "Multicolores la casa de las pinturas": {
+    "Centro": 5000,
+    "Sucre": 5000,
+    "San Antonio": 6000,
+    "20 de Julio": 6000,
+    "San Luis": 7000,
+    "El Porvenir": 7000,
+    "Otra zona": "confirmar"
+  },
+
+  "Supermercado Sur": {
+    "Centro": 7000,
+    "Sucre": 7000,
+    "San Antonio": 6000,
+    "20 de Julio": 6000,
+    "San Luis": 5000,
+    "El Porvenir": 5000,
+    "Otra zona": "confirmar"
+  }
+};
+
 const tiendasInfo = {
   "Droguería Santa Ana": {
   direccion: "Esquina, Calle 14 # 13-89",
@@ -46,7 +118,7 @@ const tiendasInfo = {
 },
 
   "Supermercado Sur": {
-    direccion: "Tame",
+    direccion: "cl 14 #41-02",
     responsable: "Pendiente",
     horario: "Horario por definir",
     pagos: "Efectivo",
@@ -277,9 +349,13 @@ function mostrarPantalla(idPantalla) {
   const pantallaDestino = document.getElementById(idPantalla);
 
   if (pantallaDestino) {
-    pantallaDestino.classList.add("activa");
-    window.scrollTo(0, 0);
-  }
+  pantallaDestino.classList.add("activa");
+  window.scrollTo(0, 0);
+}
+
+if (idPantalla === "pedido") {
+  cargarZonasEntrega();
+}
   if (idPantalla === "tiendas") {
   mostrarCategoria("Restaurantes");
 }
@@ -466,8 +542,8 @@ function actualizarCarrito() {
   if (carrito.length === 0) {
     listaCarrito.innerHTML = "<p>No has agregado productos todavía.</p>";
     subtotalElemento.textContent = "Subtotal: $0";
-    domicilioElemento.textContent = "Domicilio: $" + formatearNumero(DOMICILIO);
-    totalElemento.textContent = "Total: $" + formatearNumero(DOMICILIO);
+    domicilioElemento.textContent = "Domicilio: se calcula según zona";
+    totalElemento.textContent = "Total productos: $0";
     return;
   }
 
@@ -496,17 +572,17 @@ function actualizarCarrito() {
     listaCarrito.appendChild(item);
   });
 
-  const total = subtotal + DOMICILIO;
-
   subtotalElemento.textContent = "Subtotal: $" + formatearNumero(subtotal);
-  domicilioElemento.textContent = "Domicilio: $" + formatearNumero(DOMICILIO);
-  totalElemento.textContent = "Total: $" + formatearNumero(total);
+  domicilioElemento.textContent = "Domicilio: se calcula según zona";
+  totalElemento.textContent = "Total productos: $" + formatearNumero(subtotal);
 }
 
 function enviarPedido() {
   const nombre = document.getElementById("nombre").value.trim();
   const telefono = document.getElementById("telefono").value.trim();
   const direccion = document.getElementById("direccion").value.trim();
+  const zona = document.getElementById("zona").value;
+  const costoDomicilio = obtenerCostoDomicilio();
 
   if (!tiendaActual) {
     alert("Debes seleccionar una tienda.");
@@ -520,6 +596,11 @@ function enviarPedido() {
 
   if (!nombre || !telefono || !direccion) {
     alert("Por favor completa nombre, teléfono y dirección.");
+    return;
+  }
+
+  if (!zona) {
+    alert("Por favor selecciona tu barrio o zona.");
     return;
   }
 
@@ -545,11 +626,20 @@ function enviarPedido() {
     mensaje += "- " + producto.nombre + " x" + producto.cantidad + " - $" + formatearNumero(totalProducto) + "\n";
   });
 
-  const total = subtotal + DOMICILIO;
+  let total = subtotal;
 
   mensaje += "\nSubtotal: $" + formatearNumero(subtotal);
-  mensaje += "\nDomicilio: $" + formatearNumero(DOMICILIO);
-  mensaje += "\nTotal: $" + formatearNumero(total);
+  mensaje += "\nZona: " + zona;
+
+  if (costoDomicilio === "confirmar") {
+    mensaje += "\nDomicilio: por confirmar según dirección";
+    mensaje += "\nTotal productos: $" + formatearNumero(subtotal);
+  } else {
+    total = subtotal + costoDomicilio;
+    mensaje += "\nDomicilio: $" + formatearNumero(costoDomicilio);
+    mensaje += "\nTotal: $" + formatearNumero(total);
+  }
+
   mensaje += "\n\nNombre cliente: " + nombre;
   mensaje += "\nTeléfono cliente: " + telefono;
   mensaje += "\nDirección cliente: " + direccion;
@@ -587,3 +677,77 @@ function actualizarContadorCarrito() {
   contador.textContent = totalUnidades;
 }
 actualizarContadorCarrito();
+
+function cargarZonasEntrega() {
+  const selectZona = document.getElementById("zona");
+  const resumenDomicilio = document.getElementById("resumen-domicilio");
+
+  if (!selectZona) return;
+
+  selectZona.innerHTML = `<option value="">Selecciona tu barrio o zona</option>`;
+
+  const zonas = zonasPorTienda[tiendaActual] || {};
+
+  Object.keys(zonas).forEach(function (nombreZona) {
+    const option = document.createElement("option");
+    option.value = nombreZona;
+
+    const valor = zonas[nombreZona];
+
+    option.textContent = nombreZona;
+
+    selectZona.appendChild(option);
+  });
+
+  if (resumenDomicilio) {
+    resumenDomicilio.textContent = "Selecciona tu barrio o zona para ver el resumen.";
+  }
+}
+
+function obtenerCostoDomicilio() {
+  const selectZona = document.getElementById("zona");
+
+  if (!selectZona || !selectZona.value) {
+    return null;
+  }
+
+  const zonas = zonasPorTienda[tiendaActual] || {};
+  return zonas[selectZona.value];
+}
+
+function actualizarResumenPedido() {
+  const resumenDomicilio = document.getElementById("resumen-domicilio");
+  const costoDomicilio = obtenerCostoDomicilio();
+
+  if (!resumenDomicilio) return;
+
+  if (costoDomicilio === null) {
+    resumenDomicilio.innerHTML = "Selecciona tu barrio o zona para ver el resumen.";
+    return;
+  }
+
+  let subtotal = 0;
+
+  carrito.forEach(function (producto) {
+    subtotal += producto.precio * producto.cantidad;
+  });
+
+  if (costoDomicilio === "confirmar") {
+    resumenDomicilio.innerHTML = `
+      <strong>Resumen del pedido</strong><br>
+      Productos: $${formatearNumero(subtotal)}<br>
+      Domicilio: por confirmar según dirección<br>
+      <strong>Total: por confirmar</strong>
+    `;
+    return;
+  }
+
+  const total = subtotal + costoDomicilio;
+
+  resumenDomicilio.innerHTML = `
+    <strong>Resumen del pedido</strong><br>
+    Productos: $${formatearNumero(subtotal)}<br>
+    Domicilio: $${formatearNumero(costoDomicilio)}<br>
+    <strong>Total: $${formatearNumero(total)}</strong>
+  `;
+}

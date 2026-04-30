@@ -147,8 +147,16 @@
 
       <div class="formulario">
         <input type="text" id="nombre" placeholder="Nombre" />
-        <input type="text" id="telefono" placeholder="Teléfono" />
-        <input type="text" id="direccion" placeholder="Dirección" />
+<input type="text" id="telefono" placeholder="Teléfono" />
+<input type="text" id="direccion" placeholder="Dirección exacta" />
+
+<select id="zona" onchange="actualizarResumenPedido()">
+  <option value="">Selecciona tu barrio o zona</option>
+</select>
+
+<p id="resumen-domicilio" class="resumen-domicilio">
+  Selecciona una zona para calcular el domicilio.
+</p>
       </div>
 
       <button type="button" class="btn" onclick="enviarPedido()">Pedir por WhatsApp</button>
