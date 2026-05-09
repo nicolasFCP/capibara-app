@@ -100,7 +100,48 @@
   <h2 id="titulo-tienda">Productos</h2>
 
   <div id="info-tienda" class="info-tienda"></div>
-  <div id="lista-productos"></div>
+
+<!-- BUSCADOR -->
+<div class="zona-buscador">
+  <input 
+    type="text" 
+    id="buscadorProductos" 
+    placeholder="🔎 Buscar productos..."
+    oninput="buscarProductos()"
+  >
+</div>
+
+<!-- CATEGORÍAS -->
+<div class="zona-categorias">
+  <button onclick="filtrarCategoria('todos')">Todos</button>
+  <button onclick="filtrarCategoria('aseo')">🧼 Aseo</button>
+  <button onclick="filtrarCategoria('mercado')">🛒 Mercado</button>
+  <button onclick="filtrarCategoria('bebidas')">🥤 Bebidas</button>
+  <button onclick="filtrarCategoria('lacteos')">🥛 Lácteos</button>
+  <button onclick="filtrarCategoria('snacks')">🍪 Snacks</button>
+  <button onclick="filtrarCategoria('hogar')">🏠 Hogar</button>
+</div>
+
+<!-- BOTÓN PASILLOS -->
+<button class="boton-pasillos" onclick="mostrarPasillos()">
+  🧭 Pasillos
+</button>
+
+<!-- MENÚ PASILLOS -->
+<div id="menuPasillos" class="menu-pasillos oculto">
+  <h3>Pasillos del autoservicio</h3>
+
+  <button onclick="filtrarCategoria('todos'); cerrarPasillos()">🛒 Todos</button>
+  <button onclick="filtrarCategoria('aseo'); cerrarPasillos()">🧼 Aseo del hogar</button>
+  <button onclick="filtrarCategoria('mercado'); cerrarPasillos()">🥫 Mercado básico</button>
+  <button onclick="filtrarCategoria('bebidas'); cerrarPasillos()">🥤 Bebidas</button>
+  <button onclick="filtrarCategoria('lacteos'); cerrarPasillos()">🥛 Lácteos</button>
+  <button onclick="filtrarCategoria('snacks'); cerrarPasillos()">🍪 Snacks</button>
+  <button onclick="filtrarCategoria('hogar'); cerrarPasillos()">🏠 Hogar</button>
+  <button onclick="cerrarPasillos()">Cerrar</button>
+</div>
+
+<div id="lista-productos"></div>
 
   <div class="espacio-barra-fija"></div>
 
