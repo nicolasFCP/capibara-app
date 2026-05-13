@@ -105,7 +105,7 @@ const tiendasInfo = {
   pagos: "Efectivo",
   entrega: "10 a 20 min",
   mensaje: "Medicamentos y productos de droguería disponibles en Tame",
-  logo: "img/logo-drogueria.png"
+  logo: "img/drogueria_santa_ana/logo-drogueria.png"
 },
 
 "Como En Casa": {
@@ -165,7 +165,7 @@ const tiendasInfo = {
     pagos: "Efectivo, Nequi, Daviplata",
     entrega: "15 minutos",
     mensaje: "Pinturas y materiales para construcción, hogar y negocio",
-    logo: "img/logo-pinturas.png"
+    logo: "img/multicolores/logo-pinturas.png"
   },
 };
 
@@ -193,13 +193,13 @@ const tiendasPorCategoria = {
 const productosPorTienda = {
  
  "Autoservicio 20 de Julio": [
-  { nombre: "Detergente en Polvo Ariel 1000gr", precio: 18500, categoria: "aseo", destacado: true, descripcion: "Detergente en polvo ideal para eliminar manchas difíciles y cuidar los colores de la ropa.", imagen: "img/Autoservicio20dejulio/DetergenteenPolvoAriel1000gr.png" },
-  { nombre: "Suavizante Suavitel Fresca Primavera 850ml", precio: 12900, categoria: "aseo", destacado: false, descripcion: "Suavizante para ropa con fragancia fresca y duradera que deja las prendas suaves.", imagen: "img/Autoservicio20dejulio/SuavizanteSuavitelFrescaPrimavera850ml.png" },
-  { nombre: "Lavaloza Axion Limon 750ml", precio: 9800, categoria: "aseo", destacado: false, descripcion: "Lavaloza líquido con poder desengrasante y aroma a limón para una limpieza profunda.", imagen: "img/Autoservicio20dejulio/LavalozaAxionLimon750ml.png" },
-  { nombre: "Cloro Blancox Tradicional 2000ml", precio: 7500, categoria: "aseo", destacado: false, descripcion: "Cloro multiusos para desinfectar, blanquear y eliminar bacterias en el hogar.", imagen: "img/Autoservicio20dejulio/CloroBlancoxTradicional2000ml.png" },
-  { nombre: "Desinfectante Fabuloso Lavanda 1000ml", precio: 11200, categoria: "aseo", destacado: false, descripcion: "Desinfectante líquido con aroma a lavanda ideal para pisos y superficies.", imagen: "img/Autoservicio20dejulio/DesinfectanteFabulosoLavanda1000ml.png" },
-  { nombre: "Papel Higienico Familia x12 Rollos", precio: 17900, categoria: "aseo", destacado: false, descripcion: "Papel higiénico suave y resistente de doble hoja para uso diario.", imagen: "img/Autoservicio20dejulio/PapelHigienicoFamiliax12Rollos.png" },
-  { nombre: "Jabon Rey Barra 300gr", precio: 3500, categoria: "aseo", destacado: false, descripcion: "Jabón en barra tradicional para lavar ropa, limpiar superficies y múltiples usos.", imagen: "img/Autoservicio20dejulio/JabonReyBarra300gr.png" },
+  { nombre: "Detergente en Polvo Ariel 1000gr", precio: 18500, categoria: "aseo", destacado: true, descripcion: "Detergente en polvo ideal para eliminar manchas difíciles y cuidar los colores de la ropa.", imagen: "img/Autoservicio20dejulio/aseo/DetergenteenPolvoAriel1000gr.png" },
+  { nombre: "Suavizante Suavitel Fresca Primavera 850ml", precio: 12900, categoria: "aseo", destacado: false, descripcion: "Suavizante para ropa con fragancia fresca y duradera que deja las prendas suaves.", imagen: "img/Autoservicio20dejulio/aseo/SuavizanteSuavitelFrescaPrimavera850ml.png" },
+  { nombre: "Lavaloza Axion Limon 750ml", precio: 9800, categoria: "aseo", destacado: false, descripcion: "Lavaloza líquido con poder desengrasante y aroma a limón para una limpieza profunda.", imagen: "img/Autoservicio20dejulio/aseo/LavalozaAxionLimon750ml.png" },
+  { nombre: "Cloro Blancox Tradicional 2000ml", precio: 7500, categoria: "aseo", destacado: false, descripcion: "Cloro multiusos para desinfectar, blanquear y eliminar bacterias en el hogar.", imagen: "img/Autoservicio20dejulio/aseo/CloroBlancoxTradicional2000ml.png" },
+  { nombre: "Desinfectante Fabuloso Lavanda 1000ml", precio: 11200, categoria: "aseo", destacado: false, descripcion: "Desinfectante líquido con aroma a lavanda ideal para pisos y superficies.", imagen: "img/Autoservicio20dejulio/aseo/DesinfectanteFabulosoLavanda1000ml.png" },
+  { nombre: "Papel Higienico Familia x12 Rollos", precio: 17900, categoria: "aseo", destacado: false, descripcion: "Papel higiénico suave y resistente de doble hoja para uso diario.", imagen: "img/Autoservicio20dejulio/aseo/PapelHigienicoFamiliax12Rollos.png" },
+  { nombre: "Jabon Rey Barra 300gr", precio: 3500, categoria: "aseo", destacado: false, descripcion: "Jabón en barra tradicional para lavar ropa, limpiar superficies y múltiples usos.", imagen: "img/Autoservicio20dejulio/aseo/JabonReyBarra300gr.png" },
 { nombre: "Arroz Diana 1000gr", precio: 5200, categoria: "mercado", destacado: true, descripcion: "Arroz blanco ideal para el mercado familiar.", imagen: "img/Autoservicio20dejulio/mercado/arroz_diana_1000gr.png" },
 { nombre: "Aceite Premier 900ml", precio: 9800, categoria: "mercado", destacado: false, descripcion: "Aceite vegetal para preparar tus comidas diarias.", imagen: "img/Autoservicio20dejulio/mercado/aceite_premier_900ml.png" },
 
