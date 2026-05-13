@@ -1,4 +1,16 @@
 :root {
+  color-scheme: light;
+}
+
+html {
+  background: #f7f2e8 !important;
+}
+
+body {
+  background: linear-gradient(180deg, #f7f2e8 0%, #eef2df 100%) !important;
+  color: #1a1a1a !important;
+}
+:root {
   --verde-oscuro: #0f2f1f;
   --verde-profundo: #163624;
   --verde-principal: #2f6b3d;
