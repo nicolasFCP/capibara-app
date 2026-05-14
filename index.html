@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Capibara</title>
-  <link rel="stylesheet" href="./style.css?v=12">
+  <link rel="stylesheet" href="./style.css?v=20">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
@@ -116,32 +116,19 @@
 </div>
 
 <!-- CATEGORÍAS -->
-<div class="zona-categorias">
-  <button onclick="filtrarCategoria('todos')">Todos</button>
-  <button onclick="filtrarCategoria('aseo')">🧼 Aseo</button>
-  <button onclick="filtrarCategoria('mercado')">🛒 Mercado</button>
-  <button onclick="filtrarCategoria('bebidas')">🥤 Bebidas</button>
-  <button onclick="filtrarCategoria('lacteos')">🥛 Lácteos</button>
-  <button onclick="filtrarCategoria('snacks')">🍪 Snacks</button>
-  <button onclick="filtrarCategoria('hogar')">🏠 Hogar</button>
-</div>
+<div id="categoriasTienda" class="zona-categorias"></div>
 
 <!-- BOTÓN PASILLOS -->
 <button class="boton-pasillos" onclick="mostrarPasillos()">
-  🧭 Pasillos
+  🗂️ Categorías
 </button>
 
 <!-- MENÚ PASILLOS -->
 <div id="menuPasillos" class="menu-pasillos oculto">
-  <h3>Pasillos del autoservicio</h3>
+  <h3 id="tituloMenuCategorias">Categorías</h3>
 
-  <button onclick="filtrarCategoria('todos'); cerrarPasillos()">🛒 Todos</button>
-  <button onclick="filtrarCategoria('aseo'); cerrarPasillos()">🧼 Aseo del hogar</button>
-  <button onclick="filtrarCategoria('mercado'); cerrarPasillos()">🥫 Mercado básico</button>
-  <button onclick="filtrarCategoria('bebidas'); cerrarPasillos()">🥤 Bebidas</button>
-  <button onclick="filtrarCategoria('lacteos'); cerrarPasillos()">🥛 Lácteos</button>
-  <button onclick="filtrarCategoria('snacks'); cerrarPasillos()">🍪 Snacks</button>
-  <button onclick="filtrarCategoria('hogar'); cerrarPasillos()">🏠 Hogar</button>
+  <div id="opcionesPasillos"></div>
+
   <button onclick="cerrarPasillos()">Cerrar</button>
 </div>
 
@@ -210,8 +197,35 @@
       </button>
     </section>
   </main>
-
-  <script src="./script.js?v=12"></script>
   
+ <!-- DATOS -->
+<script src="./datos/zonas.js?v=20"></script>
+<script src="./datos/tiendas.js?v=20"></script>
+
+<!-- PRODUCTOS -->
+<script src="./datos/productos/multicolores.js?v=20"></script>
+<script src="./datos/productos/supermercadosur.js?v=20"></script>
+<script src="./datos/productos/brasaaraucana.js?v=20"></script>
+<script src="./datos/productos/dazacacao.js?v=20"></script>
+<script src="./datos/productos/apiesteban.js?v=20"></script>
+<script src="./datos/productos/drogueriasantaana.js?v=20"></script>
+<script src="./datos/productos/comoencasa.js?v=20"></script>
+<script src="./datos/productos/autoservicio20.js?v=20"></script>
+
+<!-- CONFIG -->
+<script src="./datos/productos.js?v=20"></script>
+<script src="./datos/categorias.js?v=20"></script>
+<script src="./datos/categoriasTiendas.js?v=20"></script>
+
+<!-- FUNCIONES -->
+<script src="./funciones/carrito.js?v=20"></script>
+<script src="./funciones/filtros.js?v=20"></script>
+<script src="./funciones/navegacion.js?v=20"></script>
+<script src="./funciones/renderTiendas.js?v=20"></script>
+<script src="./funciones/renderProductos.js?v=20"></script>
+
+<!-- APP -->
+<script src="./script.js?v=20"></script>
+</body>
 </body>
 </html>
